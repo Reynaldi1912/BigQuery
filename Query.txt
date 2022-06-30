@@ -1,0 +1,6 @@
+SELECT trip.bikeid , stations.name as start_station_name , SUM(trip.tripduration) as total_duration , trip.gender FROM 
+`bigdata1-347603.nyc_citi_bike_trips.citibike_trips` as trip 
+INNER JOIN 
+`bigdata1-347603.nyc_citi_bike_trips.citibike_stations` as stations
+on trip.start_station_id = stations.station_id group by trip.bikeid , stations.name , trip.tripduration , trip.gender
+order by SUM(trip.tripduration) DESC LIMIT 20
